@@ -4,15 +4,16 @@
 #
 #Andrei Henrique Santos
 
-if [ $# -ne 3 ]; then
+if [ $# -ne 4 ]; then
     echo "Para rodar este script é necessário enviar os seguintes argumentos: "
-    echo "./zabbix-script.sh <token-zabbix> <ip-zabbix> <nome-buckets3>"
+    echo "./zabbix-script.sh <token-zabbix> <ip-zabbix> <nome-buckets3> <template-id>"
     exit 1
 fi
 
 AUTH_TOKEN=$1
 IP_ZABBIX=$2
 BUCKET_S3=$3
+TEMPLATE_ID=$4
 
 current_time=$(date +%s)
 month_ago=$(date -d "1 month ago" +%s)
@@ -38,7 +39,7 @@ zabbix_request() {
     echo $response
 }
 
-hosts=$(zabbix_request 1 $IP_ZABBIX $AUTH_TOKEN "template.get" '{"output": "hosts","templateids": "10638","selectHosts": ["hostid", "host"]}' | jq -c '.result[] | .hosts[]')
+hosts=$(zabbix_request 1 $IP_ZABBIX $AUTH_TOKEN "template.get" "{\"output\": \"hosts\",\"templateids\": \"$TEMPLATE_ID\",\"selectHosts\": [\"hostid\", \"host\"]}" | jq -c '.result[] | .hosts[]')
 
 echo "${hosts}" | while read -r host; do
     hostid=$(echo "$host" | jq -r '.hostid')
