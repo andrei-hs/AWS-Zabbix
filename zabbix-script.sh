@@ -4,6 +4,12 @@
 #
 #Andrei Henrique Santos
 
+if [ $# -ne 3 ]; then
+    echo "Para rodar este script é necessário enviar os seguintes argumentos: "
+    echo "./zabbix-script.sh <token-zabbix> <ip-zabbix> <nome-buckets3>"
+    exit 1
+fi
+
 AUTH_TOKEN=$1
 IP_ZABBIX=$2
 BUCKET_S3=$3
