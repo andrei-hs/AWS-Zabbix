@@ -4,9 +4,9 @@
 #
 #Andrei Henrique Santos
 
-AUTH_TOKEN=seu-token
-IP_ZABBIX=ip-do-seu-zabbix
-BUCKET_S3="seu-bucket"
+AUTH_TOKEN=$1
+IP_ZABBIX=$2
+BUCKET_S3=$3
 
 current_time=$(date +%s)
 month_ago=$(date -d "1 month ago" +%s)
