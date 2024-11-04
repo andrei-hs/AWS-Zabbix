@@ -76,6 +76,7 @@ echo "${hosts}" | while read -r host; do
 
         # Formata os valores escritos no arquivo "values.txt" em um arquivo de planilha .csv no seu respectivo diretório
         cat "${mount_directory}/values.txt" | jq -r '.[] | [.clock, .value] | @csv' | sed 's/"//g' > "${mount_directory}/spreadsheet.csv" 
+        gnuplot -e "set terminal png; set output '$mount_directory/graph.png'; set title 'Graph Values'; set xlabel 'Clock'; set ylabel 'Values'; set xdata time; set format x '%Y-%m-%d %H:%M:%S'; set datafile separator ','; plot '$mount_directory/spreadsheet.csv' using (1):2 with linespoints title 'Dados';"
     done
 done
 
