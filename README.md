@@ -16,9 +16,49 @@ Para utilizar este script, você precisará:
 ## Como Usar
 
 1. Clone este repositório em sua máquina local.
-2. Execute o script em um terminal.
+2. Adicione a permissão de execução ao script.
+3. Execute o script em um terminal.
 
 ### Exemplo de Execução
 
 ```bash
 ./zabbix-script.sh <token-zabbix> <ip-zabbix> <nome-buckets3> <template-id>
+```
+
+### Estrutura de Diretórios Gerada
+
+Após a execução do script, a estrutura de diretórios e arquivos será semelhante a esta:
+
+```bash
+zabbix@SCRIPT:~$ tree /tmp/upload_cloud/
+/tmp/upload_cloud/
+└── logs
+    └── 2024
+        └── November
+            ├── Servidor DHCP
+            │   ├── Porcentagem uso da CPU
+            │   │   ├── spreadsheet.csv
+            │   │   └── values.txt
+            │   ├── Porcentagem uso memoria
+            │   │   ├── spreadsheet.csv
+            │   │   └── values.txt
+            │   ├── SSH Disponibilidade
+            │   │   ├── spreadsheet.csv
+            │   │   └── values.txt
+            │   └── Teste de conectividade
+            │       ├── spreadsheet.csv
+            │       └── values.txt
+            └── Servidor IoT
+                ├── Porcentagem uso da CPU
+                │   ├── spreadsheet.csv
+                │   └── values.txt
+                ├── Porcentagem uso memoria
+                │   ├── spreadsheet.csv
+                │   └── values.txt
+                ├── SSH Disponibilidade
+                │   ├── spreadsheet.csv
+                │   └── values.txt
+                └── Teste de conectividade
+                    ├── spreadsheet.csv
+                    └── values.txt
+```
