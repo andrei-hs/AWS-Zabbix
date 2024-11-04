@@ -57,11 +57,13 @@ echo "${hosts}" | while read -r host; do
 
         echo "	Item Name: $itemname"
 
-        history=$(zabbix_request 3 $IP_ZABBIX $AUTH_TOKEN "history.get" "{\"output\": [\"clock\", \"value\"], \"history\": \"$itemvaluetype\", \"itemids\": \"$itemid\", \"sortfield\": \"clock\", \"sortorder\": \"ASC\", \"time_from\": \"$month_ago\", \"time_till\": \"$current_time\"}" | jq -c '.result[]')
+        history=$(zabbix_request 3 $IP_ZABBIX $AUTH_TOKEN "history.get" "{\"output\": [\"clock\", \"value\"], \"history\": \"$itemvaluetype\", \"itemids\": \"$itemid\", \"sortfield\": \"clock\", \"sortorder\": \"ASC\", \"time_from\": \"$month_ago\", \"time_till\": \"$current_time\"}" | jq -c '.result')
 
-        mount_directory="/tmp/upload_cloud/logs/$(date +%Y)/$(date +%B)/${hostname}/${itemname}/"
+        mount_directory="/tmp/upload_cloud/logs/$(date +%Y)/$(date +%B)/${hostname}/${itemname}"
         mkdir -p "${mount_directory}" 
-        echo $history | jq . > "${mount_directory}/values.txt"
+        echo $history > "${mount_directory}/values.txt"
+
+        cat "${mount_directory}/values.txt" | jq -r '.[] | [.clock, .value] | @csv' | sed 's/"//g' > "${mount_directory}/spreadsheet.csv" 
     done
 done
 
