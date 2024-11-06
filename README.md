@@ -38,27 +38,27 @@ zabbix@SCRIPT:~$ tree /tmp/upload_cloud/
             ├── Servidor DHCP
             │   ├── Porcentagem uso da CPU
             │   │   ├── spreadsheet.csv
-            │   │   └── values.txt
+            │   │   └── values.json
             │   ├── Porcentagem uso memoria
             │   │   ├── spreadsheet.csv
-            │   │   └── values.txt
+            │   │   └── values.json
             │   ├── SSH Disponibilidade
             │   │   ├── spreadsheet.csv
-            │   │   └── values.txt
+            │   │   └── values.json
             │   └── Teste de conectividade
             │       ├── spreadsheet.csv
-            │       └── values.txt
+            │       └── values.json
             └── Servidor IoT
                 ├── Porcentagem uso da CPU
                 │   ├── spreadsheet.csv
-                │   └── values.txt
+                │   └── values.json
                 ├── Porcentagem uso memoria
                 │   ├── spreadsheet.csv
-                │   └── values.txt
+                │   └── values.json
                 ├── SSH Disponibilidade
                 │   ├── spreadsheet.csv
-                │   └── values.txt
+                │   └── values.json
                 └── Teste de conectividade
                     ├── spreadsheet.csv
-                    └── values.txt
+                    └── values.json
 ```
