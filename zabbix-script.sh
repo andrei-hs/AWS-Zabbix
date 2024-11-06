@@ -55,7 +55,7 @@ echo "${hosts}" | while read -r host; do
     # Requere os itens de um host e os salva nesta variável
     itens=$(zabbix_request 2 $IP_ZABBIX $AUTH_TOKEN "item.get" "{\"output\": [\"itemid\", \"name\", \"value_type\"], \"hostids\": \"$hostid\"}" | jq -c '.result[]') 
 
-    # Faz um outro loop para ir de item e item na lista e requere seu histórico até de um mês atrás
+    # Faz um outro loop para ir de item e item na lista e requerer seu histórico até de um mês atrás
     echo "${itens}" | while read -r item; do
 
         itemid=$(echo "$item" | jq -r '.itemid')
@@ -71,11 +71,11 @@ echo "${hosts}" | while read -r host; do
         mount_directory="/tmp/upload_cloud/logs/$(date +%Y)/$(date +%B)/${hostname}/${itemname}"
         mkdir -p "${mount_directory}" 
 
-        # Adiciona o JSON do histório de um item em um arquivo "values.txt" na sua devida pasta no diretório local 
-        echo $history > "${mount_directory}/values.txt"
+        # Adiciona o JSON do histório de um item em um arquivo "values.json" no seu devido diretório 
+        echo $history > "${mount_directory}/values.json"
 
-        # Formata os valores escritos no arquivo "values.txt" em um arquivo de planilha .csv no seu respectivo diretório
-        cat "${mount_directory}/values.txt" | jq -r '.[] | [.clock, .value] | @csv' | sed 's/"//g' > "${mount_directory}/spreadsheet.csv" 
+        # Formata os valores do JSON do histórico de um item em um arquivo de planilha .csv no seu respectivo diretório
+        echo $history | jq -r '.[] | [(.clock | tonumber | strftime("%d/%m/%Y")), (.clock | tonumber | strftime("%H:%M:%S")), .value] | @csv' | sed 's/"//g' > "${mount_directory}/spreadsheet.csv" 
     done
 done
 
