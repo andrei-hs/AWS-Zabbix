@@ -43,7 +43,7 @@ TEMPLATE_ID="id-do-template"
 
 1. Clone este repositório em sua máquina local.
 2. Baixe e configure as dependências.
-2. Execute o script em um terminal.
+3. Execute o script em um terminal.
 
     ```bash
     ./upload-zabbix.sh <token-zabbix> <ip-zabbix> <nome-buckets3> <template-id>
