@@ -18,7 +18,7 @@ itemname=$(echo "$item" | jq -r '.name')
 itemvaluetype=$(echo "$item" | jq -r '.value_type')
 
 # Faz uma requisição para capturar o histórico de um item
-history=$(./utils/zabbix-request.sh 1 $IP_ZABBIX $AUTH_TOKEN "history.get" "{\"output\": [\"clock\", \"value\"], \"history\": \"$itemvaluetype\", \"itemids\": \"$itemid\", \"sortfield\": \"clock\", \"sortorder\": \"ASC\", \"time_from\": \"$month_ago\", \"time_till\": \"$current_time\"}" | jq -c '.result')
+history=$(./utils/zabbix-request.sh 3 $IP_ZABBIX $AUTH_TOKEN "history.get" "{\"output\": [\"clock\", \"value\"], \"history\": \"$itemvaluetype\", \"itemids\": \"$itemid\", \"sortfield\": \"clock\", \"sortorder\": \"ASC\", \"time_from\": \"$month_ago\", \"time_till\": \"$current_time\"}" | jq -c '.result')
 
 # Gera os diretórios que serão enviados a nuvem no diretório local "/tmp/upload-cloud"
 mount_directory="/tmp/upload_cloud/logs/$(date +%Y)/$(date +%B)/${hostname}/${itemname}"
