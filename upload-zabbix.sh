@@ -53,5 +53,9 @@ done
 # Aguarda todos os processos terminarem
 wait
 
+echo "---------------------------------------------------"
+echo "|                Iniciando upload!                |"
+echo "---------------------------------------------------"
+
 # Envia todos os arquivos dentro da pasta "/tmp/upload-cloud" junto com seus respectivos diretórios em um Bucket S3 da AWS
 aws s3 cp "/tmp/upload_cloud/" "s3://${BUCKET_S3}/" --recursive

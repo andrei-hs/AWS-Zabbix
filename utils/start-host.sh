@@ -16,6 +16,9 @@ itemsprocess_number=0
 hostname=$(echo "$host" | jq -r '.host')
 hostid=$(echo "$host" | jq -r '.hostid')
 
+echo "Host: $hostname"
+echo "---------------------------------------------------"
+
 # Realiza um requisição para receber os itens associados a um host específico e os salva em uma variável
 items=$(./utils/zabbix-request.sh 2 $IP_ZABBIX $AUTH_TOKEN "item.get" "{\"output\": [\"itemid\", \"name\", \"value_type\"], \"hostids\": \"$hostid\"}" | jq -c '.result[]') 
 
