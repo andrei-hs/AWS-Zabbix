@@ -13,6 +13,14 @@ Para utilizar este script, você precisará de:
 - **TOKEN de acesso à API do Zabbix**: É necessário um token válido para autenticação na API do Zabbix.
 - **Endereço IP do servidor Zabbix**: Informe o IP do servidor Zabbix a ser consultado durante a execução do script.
 
+### Dependências
+
+Esta é a lista dos pacotes que o script utiliza:
+
+- curl
+- jq
+- aws-cli
+
 ## Arquivo de configuração
 
 Ao executar o script pela primeira vez, conforme descrito na seção **Como Usar**, um arquivo de configuração chamado `config.sh` será criado automaticamente no mesmo diretório onde o script está localizado.
