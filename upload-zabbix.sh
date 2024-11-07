@@ -19,7 +19,7 @@ else
     # Verifica se o arquivo de configuração já existe
     if [ ! -e "config.sh" ]; then
        echo "Para rodar este script é necessário enviar os seguintes argumentos: "
-       echo "./zabbix-script.sh <token-zabbix> <ip-zabbix> <nome-buckets3> <template-id>"
+       echo "./upload-zabbix.sh <token-zabbix> <ip-zabbix> <nome-buckets3> <template-id>"
        exit 1
     fi
 

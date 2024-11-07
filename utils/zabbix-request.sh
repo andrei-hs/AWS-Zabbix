@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-#       Script de Backup Arquivos Nuvem AWS
+#       Script de Backup Arquivos Nuvem AWS - Request Zabbix API
 #
 #Andrei Henrique Santos
 
