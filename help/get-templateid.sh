@@ -16,7 +16,7 @@ AUTH_TOKEN=$2
 IP_ZABBIX=$3
 
 # Realiza uma requisição para receber o Nome e o ID de um template
-template_info=$(./utils/zabbix-request.sh 1 $IP_ZABBIX $AUTH_TOKEN "template.get" "{\"output\": [\"name\", \"templateid\"], \"filter\": {\"name\": \"$TEMPLATE_NAME\"}}" | jq -c '.result[]')
+template_info=$(./../utils/zabbix-request.sh 1 $IP_ZABBIX $AUTH_TOKEN "template.get" "{\"output\": [\"name\", \"templateid\"], \"filter\": {\"name\": \"$TEMPLATE_NAME\"}}" | jq -c '.result[]')
 
 templateinfo_name=$(echo $template_info | jq -r '.name')
 templateinfo_id=$(echo $template_info | jq -r '.templateid')
